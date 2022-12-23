@@ -6,7 +6,7 @@ Inside each directory it has the needed commands for running the project api/app
 
 ## Setup .env files
 
-### API ENV
+#### API ENV
 ```bash
 MONGO_URL="here your mongodb url" # maybe something like "mongodb://localhost:27017/db-name"
 S3_ENDPOINT="http://localhost:4568"
@@ -18,7 +18,7 @@ GOOGLE_CLIENT_SECRET="" # Same as Client_id
 SECRET=test # random string that will be used for the cookie generation
 ```
 
-### APP ENV
+#### APP ENV
 
 ```bash
 VITE_API_URL="" # The url for ur backend like "http://localhost:5000"
