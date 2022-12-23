@@ -4,17 +4,13 @@ config()
 import Express, { Request, Response, json, urlencoded } from "express"
 import mongoose from "mongoose"
 import cors from "cors"
-import multer from "multer"
-const upload = multer()
 import cookieParser from "cookie-parser"
 import cookieSession from "cookie-session"
 import passport from "passport"
 import { Strategy as GoogleStrategy } from "passport-google-oauth2" 
 
-const getFilesController = require("./controllers/getFilesController");
-const getFileController = require("./controllers/getFileController");
-const uploadFileController = require("./controllers/uploadFileController");
-const isAuthenticated = require("./middleware/isAuthenticated");
+import authRouter from "./routes/auth"
+import filesRouter from "./routes/files"
 
 const app = Express()
 
@@ -29,7 +25,7 @@ passport.use(
       callbackURL: "http://localhost:5000/auth/google/callback",
       passReqToCallback: true,
     },
-    function (request, accessToken, refreshToken, profile, done) {
+    function (request: any, accessToken: string, refreshToken: string, profile: string, done: any) {
       return done(null, profile);
     }
   )
@@ -40,7 +36,7 @@ passport.serializeUser((user, done) => {
 });
 
 passport.deserializeUser((user, done) => {
-  done(null, user);
+  done(null, user as any);
 });
 
 app.use(
@@ -66,26 +62,9 @@ app.use(
 app.use(passport.initialize());
 app.use(passport.session());
 
-app.get(
-  "/auth/google",
-  passport.authenticate("google", { scope: ["email", "profile"] })
-);
-app.get(
-  "/auth/google/callback",
-  passport.authenticate("google", {
-    successRedirect: "http://localhost:5173/",
-    failureRedirect: "http://localhost:5173/error",
-  })
-);
 
-app.post(
-  "/files",
-  isAuthenticated,
-  upload.single("file"),
-  uploadFileController
-);
-app.get("/files", isAuthenticated, getFilesController);
-app.get("/files/:filename", isAuthenticated, getFileController);
+app.use("/auth", authRouter)
+app.use("/files", filesRouter)
 
 mongoose.connect(MONGO_URL as string).then(() => {
   app.listen(PORT, () => {
