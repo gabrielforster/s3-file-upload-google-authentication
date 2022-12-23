@@ -3,3 +3,11 @@ Simple fullstack app for upload files and list all the uploaded files
 
 ## Start Project
 Coming soon...
+
+## Setup .env files
+
+### Backend
+TODO
+
+### Frontend
+TODO
