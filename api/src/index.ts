@@ -62,7 +62,6 @@ app.use(
 app.use(passport.initialize());
 app.use(passport.session());
 
-
 app.use("/auth", authRouter)
 app.use("/files", filesRouter)
 
