@@ -1,2 +1,0 @@
-TODO
- - Get Google credentials
