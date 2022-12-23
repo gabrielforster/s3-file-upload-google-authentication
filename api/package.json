@@ -7,7 +7,7 @@
     "start": "ts-node src/index.ts",
     "dev": "nodemon src/index.ts",
     "build": "tsc",
-    "s3": "mkdir -p s3 && s3rver -d s3"
+    "s3": "mkdir -p s3/my-files && s3rver -d s3"
   },
   "author": "",
   "license": "MIT",
