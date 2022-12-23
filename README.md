@@ -24,3 +24,5 @@ SECRET=test # random string that will be used for the cookie generation
 VITE_API_URL="" # The url for ur backend like "http://localhost:5000"
 ```
 
+## Base idea for the project
+[Video from web dev junkie](https://www.youtube.com/watch?v=LCxb0oTKTg4&t)
