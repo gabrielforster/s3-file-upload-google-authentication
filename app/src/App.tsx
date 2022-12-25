@@ -26,8 +26,6 @@ export default function App() {
     });
   }, []);
 
-  console.log(API_URL);
-
   return (
     <div className="min-h-screen flex items-center justify-center bg-zinc-800 text-white">
       {!isAuthenticated ? (
